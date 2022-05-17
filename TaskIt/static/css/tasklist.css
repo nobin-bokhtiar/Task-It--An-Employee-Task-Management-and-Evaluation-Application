@@ -1,0 +1,21 @@
+.tasks{
+  margin-top:  30px;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+.comments{
+  margin-left: 15px;
+}
+
+.user_comment{
+  border-radius: 50px;
+}
+
+.buttons{
+  border-radius: 50px;
+}
+
+.rating{
+  border-radius: 30px;
+}

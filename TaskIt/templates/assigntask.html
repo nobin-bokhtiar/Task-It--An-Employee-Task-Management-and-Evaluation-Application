@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title> Assign Task </title>
+
+        <script src="https://kit.fontawesome.com/af67e90b0e.js" crossorigin="anonymous"></script>
+
+        <meta charset="utf-8">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+        <!--font awesome -->
+        <script src="https://kit.fontawesome.com/472df19e0c.js" crossorigin="anonymous"></script>
+
+        <!--main css-->
+        <link rel="stylesheet" type="text/css" href="{% static "css/task_assignment.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/theme.css" %}">
+
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
+
+
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+
+
+    <!--For Navigation Bar-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark nav-bar">
+        <a class="navbar-brand" href="loginresult"><img src="{% static "images/TaskitLogo.png" %}" width=50% height=50% alt="Taskitlogo" class="img-rounded center-block"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto">
+          {% if position != 1 %}
+          <li class="nav-item">
+            <a class="nav-link" href="taskassign">Assign task</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="task_history">Task History</a>
+          </li>
+          {% if position != 1 %}
+          <li class="nav-item">
+            <a class="nav-link" href="check_task_status">Check turned in tasks</a>
+          </li>
+          {% endif %}
+          {% if position != 3 %}
+          <li class="nav-item">
+            <a class="nav-link" href="tasks">Tasks</a>
+          </li>
+          {% endif %}
+          {% if position != 1 %}
+          <li class="nav-item">
+            <a class="nav-link" href="check_assign_tasks">Check assigned task</a>
+          </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<!--For Task Assigning Boxr-->
+<div class="row">
+  <div class="col-lg-6 sm-12">
+    <h1>Assign Task</h1>
+    <p>Here you can assign tasks to your employees</p>
+  </div>
+
+  <div class="col-lg-6 sm-12 container assigntask">
+
+    <form  action="task_assign_to_empl" method="post">
+      {% csrf_token %}
+      <div class="form-group row">
+        <div class="form-group col-6">
+
+           <label for="employee">Employee</label>
+          <select class="form-control" id="employee" class="employee_select" name="select_emp"  placeholder="Select a employee">
+            {% for employee in employees %}
+              <option value="{{employee.position_id}}">{{employee.emp_username}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="date">Deadline</label>
+        <input class="form-control" type="date" id="date" name="deadline" placeholder="Deadline">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" type="text" name="tasktitle" placeholder="Give the task title here">
+      </div>
+      <div class="form-group">
+          <label for="desctiption">Task Description</label>
+          <textarea class="form-control" id="description" type="text" name="taskdesc"  placeholder="Describe the task details here"></textarea>
+      </div>
+      <button class="btn btn-primary submitbutton">Assign</button>
+    </form>
+
+  </div>
+</div>
+
+
+
+
+  </body>
+
+  </body>
+</html>

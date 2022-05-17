@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title> Home Page </title>
+
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+        <!--font awesome -->
+        <script src="https://kit.fontawesome.com/472df19e0c.js" crossorigin="anonymous"></script>
+
+        <!--main css-->
+        <link rel="stylesheet" type="text/css" href="{% static "css/theme.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/loginresult.css" %}">
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
+
+
+        <script src="https://kit.fontawesome.com/af67e90b0e.js" crossorigin="anonymous"></script>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+  <header>
+  <!--For Navigation Bar-->
+   <nav class="navbar navbar-expand-lg navbar-dark nav-bar">
+       <a class="navbar-brand" href="loginresult"><img src="{% static "images/TaskitLogo.png" %}" width=50% height=50% alt="Taskitlogo" class="img-rounded center-block"></a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarNav">
+
+       <ul class="navbar-nav ms-auto">
+         {% if position != 1 %}
+         <li class="nav-item">
+           <a class="nav-link" href="taskassign">Assign task</a>
+         </li>
+         {% endif %}
+         <li class="nav-item">
+           <a class="nav-link" href="task_history">Task History</a>
+         </li>
+         {% if position != 1 %}
+         <li class="nav-item">
+           <a class="nav-link" href="check_task_status">Check turned in tasks</a>
+         </li>
+         {% endif %}
+         {% if position != 3 %}
+         <li class="nav-item">
+           <a class="nav-link" href="tasks">Tasks</a>
+         </li>
+         {% endif %}
+         {% if position != 1 %}
+         <li class="nav-item">
+           <a class="nav-link" href="check_assign_tasks">Check assigned task</a>
+         </li>
+         {% endif %}
+
+         <li class="nav-item">
+           <a class="nav-link" href="logout">Logout</a>
+         </li>
+       </ul>
+     </div>
+   </nav>
+  <h5>{{message}}</h5>
+
+  <!--For Information Box-->
+  <div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4">
+         <div class="card profile">
+           {% if gender == 1 %}
+            <img class="card-img-top" src={% static "images/male.png" %} alt="">
+           {% endif %}
+           {% if gender == 2 %}
+            <img class="card-img-top" src={% static "images/female.png" %} alt="">
+           {% endif %}
+            <div class="card-body">
+              <h5>Employee Name: {{name.emp_name}}</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Employee Username: {{user.emp_username}}</li>
+                <li class="list-group-item">Employee Contact Number: {{name.emp_contact_Number}}</li>
+                <li class="list-group-item">Company: {{company_name}}</li>
+                {% if position == 1 %}
+                <li class="list-group-item">Employee Position: Employee</li>
+                {% endif %}
+                {% if position == 2 %}
+                <li class="list-group-item">Employee Position: Sub-manager</li>
+                {% endif %}
+                {% if position == 3 %}
+                <li class="list-group-item">Employee Position: Manager</li>
+                {% endif %}
+
+              </ul>
+            </div>
+            <div class="card-footer">
+              <p>Rating : {{rating}}</p>
+            </div>
+         </div>
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+</main>
+</body>
+</html>
